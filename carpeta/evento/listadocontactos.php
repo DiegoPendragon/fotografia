@@ -30,15 +30,16 @@
 			include "php/conexionbd.php";
 			$link=AbrirConexion();
 				//CerrarConexion($link);
-			$CadSql="Select a.rut_contacto,a.nombre_contacto, a.correo_contacto from contacto a;";
+			$CadSql="Select a.rut_contacto,a.nombre_contacto, a.correo_contacto, a.telefono_contacto from contacto a;";
 			$resultado=EjecutarConsulta($CadSql,$link);
 			?>
 			<div class="row">
 				<div class="col-sm-2"></div>
-				<div class="col-sm-3">Rut contacto</div>
+				<div class="col-sm-2">Rut contacto</div>
 				<div class="col-sm-3">Nombre contacto</div>
 				<div class="col-sm-3">Correo contacto</div>
-				<div class="col-sm-2"></div>
+				<div class="col-sm-2">Telefono</div>
+				<div class="col-sm-1"></div>
 			</div>
 			<?php 		
 			while($fila=mysqli_fetch_array($resultado))
@@ -46,7 +47,7 @@
 				?>
 				<div class="row">
 					<div class="col-sm-2"></div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<?php echo $fila["rut_contacto"];?>
 					</div>
 					<div class="col-sm-3">
@@ -55,7 +56,10 @@
 					<div class="col-sm-3">
 						<?php echo $fila["correo_contacto"];?>
 					</div>
-					<div class="col-sm-2"></div>
+					<div class="col-sm-2">
+						<?php echo $fila["telefono_contacto"];?>
+					</div>
+					<div class="col-sm-1"></div>
 				</div>
 				<?php 
 			} 
@@ -66,12 +70,13 @@
 			?>
 			<div class="row">
 				<div class="col-sm-2"></div>
+				<div class="col-sm-2"></div>
 				<div class="col-sm-3"></div>
 				<div class="col-sm-3">Total contactos</div>
-				<div class="col-sm-3">
+				<div class="col-sm-2">
 					<b> <?php echo $fila["total"];?> </b>
 				</div>
-				<div class="col-sm-2"></div>
+				<div class="col-sm-1"></div>
 			</div>
 			<?php CerrarConexion($link); ?>
 		</div>
